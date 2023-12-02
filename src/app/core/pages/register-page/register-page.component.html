@@ -1,0 +1,57 @@
+<div class="register-wrapper">
+  <p-card header="Register" [style]="{ width: '360px' }">
+    <div class="card flex justify-content-center">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <span class="p-float-label">
+          <input pInputText id="username" formControlName="login" />
+          <label htmlFor="username">Username</label>
+        </span>
+
+        <span class="p-float-label mt">
+          <p-password
+            formControlName="password"
+            [feedback]="false"
+          ></p-password>
+          <label for="password">Password</label>
+        </span>
+
+        <span class="p-float-label mt">
+          <p-password
+            formControlName="rePassword"
+            [feedback]="false"
+          ></p-password>
+          <label for="password">Repeat Password</label>
+        </span>
+
+        <span class="p-float-label mt">
+          <input pInputText formControlName="email" />
+          <label htmlFor="username">Email</label>
+        </span>
+
+        <span class="p-float-label mt">
+          <input pInputText formControlName="name" />
+          <label htmlFor="username">Name</label>
+        </span>
+        <span class="p-float-label mt">
+          <input pInputText formControlName="lastName" />
+          <label htmlFor="username">Last Name</label>
+        </span>
+
+        <button
+          type="submit"
+          pButton
+          pRipple
+          label="Register"
+          class="p-button-success mt"
+        ></button>
+      </form>
+    </div>
+  </p-card>
+</div>
+
+<!-- // "login": "login",
+//   "hasło": "hasło",
+//   "email": "email",
+//   "imie": "imie",
+//   "nazwisko": "nazwisko jest opcjonalne",
+//   "typUsera": "twórca/user" -->

@@ -1,0 +1,28 @@
+<div class="login-wrapper">
+  <p-card header="Login" [style]="{ width: '360px' }">
+    <div class="card flex justify-content-center">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <span class="p-float-label">
+          <input pInputText id="username" formControlName="login" />
+          <label htmlFor="username">Username</label>
+        </span>
+
+        <span class="p-float-label mt">
+          <p-password
+            formControlName="password"
+            [feedback]="false"
+          ></p-password>
+          <label for="password">Password</label>
+        </span>
+
+        <button
+          type="submit"
+          pButton
+          pRipple
+          label="Login"
+          class="p-button-success mt"
+        ></button>
+      </form>
+    </div>
+  </p-card>
+</div>
