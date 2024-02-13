@@ -1,0 +1,56 @@
+<div class="form-wrapper">
+  <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+    <div class="form-item">
+      <span class="p-float-label mt">
+        <input pInputText formControlName="title" />
+        <label htmlFor="title">Title</label>
+      </span>
+    </div>
+    <div class="form-item">
+      <p-chips
+        separator=","
+        placeholder="Enter tags seperated by: ,"
+        formControlName="tags"
+      ></p-chips>
+    </div>
+    <div class="form-item">
+      <p-chips
+        separator=","
+        placeholder="Enter links seperated by: ,"
+        formControlName="links"
+      ></p-chips>
+    </div>
+
+    <div formGroupName="body">
+      <div class="form-item">
+        <span class="p-float-label mt">
+          <input pInputText formControlName="title" />
+          <label htmlFor="body_title">body title</label>
+        </span>
+      </div>
+
+      <div class="form-item">
+        <span class="p-float-label">
+          <textarea
+            formControlName="body"
+            id="float-input"
+            rows="5"
+            cols="30"
+            pInputTextarea
+          ></textarea>
+          <label for="float-input">Content</label>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-item">
+      <button
+        type="submit"
+        pButton
+        pRipple
+        label="Save"
+        class="p-button-success mt"
+      ></button>
+    </div>
+  </form>
+</div>

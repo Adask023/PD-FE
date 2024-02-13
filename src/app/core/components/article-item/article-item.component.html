@@ -1,13 +1,29 @@
-<p-card header="Advanced Card" subheader="Card Subheader" [style]="{ width: '360px' }">
-    <ng-template pTemplate="header">
-        <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
-    </ng-template>
+<p-accordionTab>
+  <ng-template pTemplate="header">
+    <div class="header-article flex align-items-center">
+      <span class="vertical-align-middle">{{ article.title }}</span>
+      <div *ngIf="article.tags.length > 0" class="tags-wrapper">
+        <span class="tag" *ngFor="let tag of article.tags">{{ tag }}</span>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <h3>{{ article.body.title }}</h3>
     <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-        quas!
+      {{ article.body.body }}
     </p>
-    <ng-template pTemplate="footer">
-        <p-button label="Save" icon="pi pi-check"></p-button>
-        <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
-    </ng-template>
-</p-card>
+    <p class="iframes-wrapper" *ngIf="article.links.length > 0">
+      <ng-container *ngFor="let link of article.links">
+        <iframe
+          width="560"
+          height="315"
+          [src]="link | safe"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </ng-container>
+    </p>
+  </ng-template>
+</p-accordionTab>

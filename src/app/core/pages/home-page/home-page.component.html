@@ -1,11 +1,15 @@
 <div class="home-page-wrapper">
-    <app-article-item></app-article-item>
-    <app-article-item></app-article-item>
-    <app-article-item></app-article-item>
-    <app-article-item></app-article-item>
-    <app-article-item></app-article-item>
-    <app-article-item></app-article-item>
-    <app-article-item></app-article-item>
-    <app-article-item></app-article-item>
-    <app-article-item></app-article-item>
+  <p-accordion
+    *ngIf="loading === false; else loadingSpinner"
+    [multiple]="false"
+    [activeIndex]="0"
+  >
+    <ng-container *ngFor="let article of articles">
+      <app-article-item [article]="article"></app-article-item>
+    </ng-container>
+  </p-accordion>
 </div>
+
+<ng-template #loadingSpinner
+  ><p-progressSpinner></p-progressSpinner
+></ng-template>

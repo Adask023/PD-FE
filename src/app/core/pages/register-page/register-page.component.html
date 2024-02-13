@@ -3,8 +3,13 @@
     <div class="card flex justify-content-center">
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <span class="p-float-label">
-          <input pInputText id="username" formControlName="login" />
-          <label htmlFor="username">Username</label>
+          <input pInputText id="username" formControlName="user_id" />
+          <label htmlFor="username">User id</label>
+        </span>
+
+        <span class="p-float-label mt">
+          <input pInputText formControlName="user_name" />
+          <label htmlFor="username">User name</label>
         </span>
 
         <span class="p-float-label mt">
@@ -13,14 +18,6 @@
             [feedback]="false"
           ></p-password>
           <label for="password">Password</label>
-        </span>
-
-        <span class="p-float-label mt">
-          <p-password
-            formControlName="rePassword"
-            [feedback]="false"
-          ></p-password>
-          <label for="password">Repeat Password</label>
         </span>
 
         <span class="p-float-label mt">
@@ -33,9 +30,20 @@
           <label htmlFor="username">Name</label>
         </span>
         <span class="p-float-label mt">
-          <input pInputText formControlName="lastName" />
-          <label htmlFor="username">Last Name</label>
+          <input pInputText formControlName="surname" />
+          <label htmlFor="surname">Last Name</label>
         </span>
+
+        <div class="card flex justify-content-center mt">
+          <div *ngFor="let user of users" class="field-checkbox mt">
+            <p-radioButton
+              [inputId]="user.key"
+              [value]="user.key"
+              formControlName="userType"
+            ></p-radioButton>
+            <label [for]="user.key" class="ml-2">{{ user.name }}</label>
+          </div>
+        </div>
 
         <button
           type="submit"

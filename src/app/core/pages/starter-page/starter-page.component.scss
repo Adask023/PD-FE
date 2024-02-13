@@ -2,19 +2,24 @@
   min-height: 100vh;
   width: 100vw;
   max-width: 100%;
-  background-color: lightgray;
+  // background-color: lightgray;
 
   .top-nav {
     height: 72px;
-    background-color: gray;
+    // background-color: gray;
   }
 
   .banner-section {
     min-height: 600px;
-    background-color: lightblue;
+    // background-color: lightblue;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
   }
+}
+
+p-button {
+  margin-left: 20px;
+  margin-right: 20px;
 }

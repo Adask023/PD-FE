@@ -16,6 +16,19 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { ArticleItemComponent } from './core/components/article-item/article-item.component';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthService } from './core/services/auth.service';
+import { HttpClientModule } from '@angular/common/http';
+import { TopNavComponent } from './core/components/top-nav/top-nav.component';
+import { ArticleAdminComponent } from './core/components/article-admin/article-admin.component';
+import { ChipsModule } from 'primeng/chips';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ArticleService } from './core/services/article.service';
+import { AccordionModule } from 'primeng/accordion';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { SafePipe } from './core/pipes/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -26,6 +39,9 @@ import { ArticleItemComponent } from './core/components/article-item/article-ite
     LoginPageComponent,
     RegisterPageComponent,
     ArticleItemComponent,
+    TopNavComponent,
+    ArticleAdminComponent,
+    SafePipe,
   ],
   imports: [
     BrowserModule,
@@ -36,8 +52,15 @@ import { ArticleItemComponent } from './core/components/article-item/article-ite
     ReactiveFormsModule,
     InputTextModule,
     RadioButtonModule,
+    ToastModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    ChipsModule,
+    InputTextareaModule,
+    AccordionModule,
+    ProgressSpinnerModule,
   ],
-  providers: [],
+  providers: [MessageService, AuthService, ArticleService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
