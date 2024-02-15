@@ -10,9 +10,11 @@ interface ArticleBody {
   body: string;
 }
 
-
 export interface ArticleGetPayload {
   message: Article[];
+  offset: number;
+  page: number;
+  total_count: number;
 }
 
 export interface Article {
@@ -22,5 +24,5 @@ export interface Article {
   body: ArticleBody;
   create_date: string;
   author_id: string;
+  _id: string;
 }
-

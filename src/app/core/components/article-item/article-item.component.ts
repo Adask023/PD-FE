@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Article } from '../../models/article.model';
 
 @Component({
@@ -8,8 +8,14 @@ import { Article } from '../../models/article.model';
 })
 export class ArticleItemComponent implements OnInit {
   @Input() article: Article;
+  @Output() newTagAddToSearchEvent = new EventEmitter<string>();
 
   ngOnInit(): void {
     console.log(this.article);
+  }
+
+  addTagToSearch(tag: string) {
+    console.log('click');
+    this.newTagAddToSearchEvent.emit(tag);
   }
 }

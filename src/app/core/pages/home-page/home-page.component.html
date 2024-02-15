@@ -1,15 +1,74 @@
+<app-top-nav></app-top-nav>
 <div class="home-page-wrapper">
-  <p-accordion
-    *ngIf="loading === false; else loadingSpinner"
-    [multiple]="false"
-    [activeIndex]="0"
-  >
-    <ng-container *ngFor="let article of articles">
-      <app-article-item [article]="article"></app-article-item>
-    </ng-container>
-  </p-accordion>
+  <div class="filters-wrapper">
+    <div class="filters-item">
+      <p-chips
+        (onRemove)="executeSearch()"
+        [max]="3"
+        [(ngModel)]="selectedTags"
+        [disabled]="loading"
+      >
+      </p-chips>
+    </div>
+
+    <div class="filters-item">
+      <p-dropdown
+        [options]="filters"
+        [(ngModel)]="selectedFilter"
+        (onChange)="executeSearch()"
+        [disabled]="loading"
+        optionLabel="name"
+      ></p-dropdown>
+    </div>
+    <div class="filters-item">
+      <span class="p-input-icon-left">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <!-- Angular extension bug, nothing to worry about -->
+        <input
+          class="search-input"
+          type="text"
+          pInputText
+          placeholder="Search"
+          [(ngModel)]="searchQueryModel"
+          [disabled]="loading"
+        />
+      </span>
+    </div>
+
+    <div class="filters-item">
+      <p-button
+        label="Search"
+        (onClick)="executeSearch()"
+        [disabled]="loading"
+      ></p-button>
+    </div>
+    <div class="filters-item">
+      <p-button label="Reset" (onClick)="resetSearch()"></p-button>
+    </div>
+  </div>
+
+  <div class="accordion-wrapper">
+    <p-accordion [multiple]="false" [activeIndex]="0">
+      <!-- <p-accordion
+      *ngIf="loading === false; else loadingSpinner"
+      [multiple]="false"
+      [activeIndex]="0"
+    > -->
+      <ng-container *ngFor="let article of articles">
+        <app-article-item
+          (newTagAddToSearchEvent)="addTagToSearch($event)"
+          [article]="article"
+        ></app-article-item>
+      </ng-container>
+    </p-accordion>
+  </div>
+  <p-paginator
+    [rows]="rows"
+    [totalRecords]="totalRecords"
+    (onPageChange)="paginate($event)"
+  ></p-paginator>
 </div>
 
-<ng-template #loadingSpinner
+<!-- <ng-template #loadingSpinner
   ><p-progressSpinner></p-progressSpinner
-></ng-template>
+></ng-template> -->

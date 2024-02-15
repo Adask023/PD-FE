@@ -29,6 +29,13 @@ import { ArticleService } from './core/services/article.service';
 import { AccordionModule } from 'primeng/accordion';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SafePipe } from './core/pipes/safe.pipe';
+import { FormsModule } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
+import { EditorModule } from 'primeng/editor';
+import { PaginatorModule } from 'primeng/paginator';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+import { TabMenuModule } from 'primeng/tabmenu';
 
 @NgModule({
   declarations: [
@@ -59,8 +66,14 @@ import { SafePipe } from './core/pipes/safe.pipe';
     InputTextareaModule,
     AccordionModule,
     ProgressSpinnerModule,
+    FormsModule,
+    DropdownModule,
+    EditorModule,
+    PaginatorModule,
+    ConfirmDialogModule,
+    TabMenuModule,
   ],
-  providers: [MessageService, AuthService, ArticleService],
+  providers: [MessageService, AuthService, ArticleService, ConfirmationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

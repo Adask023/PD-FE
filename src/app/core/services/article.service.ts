@@ -40,14 +40,49 @@ export class ArticleService {
   // http://localhost:8000/api/article/?title=sa &page=1&offset=10
 
   getArticles(
+    title: string = '',
+    sort: string = 'dateAsc',
+    tags: string[] = [],
     page: number = 1,
-    offset: number = 10,
-    title: string = ''
+    offset: number = 10
   ): Observable<ArticleGetPayload> {
     this.loadUserData();
+    let tagsString = '';
+    tags.forEach((tag) => {
+      tagsString += `&tags=${tag}`;
+    });
     return this.http.get<ArticleGetPayload>(
       `
-      http://localhost:8000/api/article?page=${page}&offset=${offset}&title=${title}`,
+      http://localhost:8000/api/article?page=${page}&offset=${offset}&sort=${sort}${tagsString}&title=${title}`,
+      {
+        headers: new HttpHeaders({
+          'Access-Control-Allow-Origin': '*',
+          Authorization: `Bearer ${this.userData.access_token}`,
+        }),
+      }
+    );
+  }
+
+  deleteArticleById(id: string) {
+    this.loadUserData();
+    return this.http.delete(
+      `
+    http://localhost:8000/api/article?article_id=${id}`,
+      {
+        headers: new HttpHeaders({
+          'Access-Control-Allow-Origin': '*',
+          Authorization: `Bearer ${this.userData.access_token}`,
+        }),
+      }
+    );
+  }
+
+  getAllArticlesByAuthor(authorId: string) {
+    this.loadUserData();
+
+    return this.http.get<ArticleGetPayload>(
+      `
+      http://localhost:8000/api/article?author_id=${authorId}`,
       {
         headers: new HttpHeaders({
           'Access-Control-Allow-Origin': '*',

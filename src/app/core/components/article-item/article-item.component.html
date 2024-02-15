@@ -3,15 +3,19 @@
     <div class="header-article flex align-items-center">
       <span class="vertical-align-middle">{{ article.title }}</span>
       <div *ngIf="article.tags.length > 0" class="tags-wrapper">
-        <span class="tag" *ngFor="let tag of article.tags">{{ tag }}</span>
+        <span
+          class="tag"
+          *ngFor="let tag of article.tags"
+          (click)="addTagToSearch(tag)"
+          >{{ tag }}</span
+        >
       </div>
     </div>
   </ng-template>
   <ng-template pTemplate="content">
     <h3>{{ article.body.title }}</h3>
-    <p>
-      {{ article.body.body }}
-    </p>
+    <p [innerHTML]="article.body.body"></p>
+
     <p class="iframes-wrapper" *ngIf="article.links.length > 0">
       <ng-container *ngFor="let link of article.links">
         <iframe

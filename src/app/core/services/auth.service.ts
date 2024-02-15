@@ -20,59 +20,32 @@ export class AuthService {
       }
     );
   }
-  //   login(payload: { user_name: string; password: string }) {
-  //     return this.http.post(`/auth/login`, payload, {
-  //       withCredentials: true,
-  //     });
-  //   }
 
   register(payload: registerPayload) {
     return this.http.post('http://localhost:8000/api/auth/signup', payload);
   }
 
-  //   addPost(title: string, content: string) {
-  //     return this.http.post(
-  //       '/api/posts/create',
-  //       {
-  //         title,
-  //         content,
-  //       },
-  //       { withCredentials: true }
-  //     );
-  //   }
+  isAuthenticatedUser() {
+    const userDataToParse = sessionStorage.getItem('userData');
+    if (typeof userDataToParse === 'string') {
+      const userData = JSON.parse(userDataToParse);
+      if (userData.access_token) return true;
+    }
+    return false;
+  }
 
-  //   getAllPosts() {
-  //     return this.http.get('/api/posts/all');
-  //   }
+  getUserId() {
+    const userDataToParse = sessionStorage.getItem('userData');
+    const userData = JSON.parse(userDataToParse as string);
+    return userData.user;
+  }
 
-  //   getMyPosts() {
-  //     return this.http.get('/api/posts');
-  //   }
-
-  //   removePost(id: string) {
-  //     return this.http.get(`/api/posts/${id}/delete`);
-  //   }
-
-  //   getPostDetails(id: number) {
-  //     return this.http.get(`/api/posts/${id}/one`);
-  //   }
-
-  //   changePassword(password: string, new_password: string) {
-  //     return this.http.post('/api/users/change-password', {
-  //       password,
-  //       new_password,
-  //     });
-  //   }
-
-  //   updateProfile(
-  //     new_telephone: string,
-  //     new_birth_year: string,
-  //     new_place: string
-  //   ) {
-  //     return this.http.post('/api/users/update-account', {
-  //       new_telephone,
-  //       new_birth_year,
-  //       new_place,
-  //     });
-  //   }
+  isCreator() {
+    const userDataToParse = sessionStorage.getItem('userData');
+    if (typeof userDataToParse === 'string') {
+      const userData = JSON.parse(userDataToParse);
+      if (userData.user_type === 'creator') return true;
+    }
+    return false;
+  }
 }

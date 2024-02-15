@@ -31,16 +31,22 @@
 
       <div class="form-item">
         <span class="p-float-label">
-          <textarea
+          <!-- <textarea
             formControlName="body"
             id="float-input"
             rows="5"
             cols="30"
             pInputTextarea
-          ></textarea>
-          <label for="float-input">Content</label>
+          ></textarea> -->
+
+          <!-- <label for="float-input">Content</label> -->
         </span>
       </div>
+      <p-editor
+        id="float-input"
+        formControlName="body"
+        [style]="{ height: '320px' }"
+      ></p-editor>
     </div>
 
     <div class="form-item">

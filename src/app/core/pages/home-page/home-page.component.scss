@@ -4,11 +4,31 @@
   width: 1400px;
   margin: auto;
   max-width: 100%;
-  display: flex;
+  // display: flex;
   // align-items: center;
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
+
+  .search-input {
+    width: 350px;
+  }
+
+  .filters-wrapper {
+    width: 100%;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    .filters-item {
+      padding: 10px;
+    }
+  }
+
+  .accordion-wrapper {
+    width: 100%;
+    margin-top: 40px;
+  }
 }
 
 p-accordion {
