@@ -1,4 +1,25 @@
-<p-accordionTab>
+<div class="article-item">
+  <div class="header-article">
+
+    <div class="vertical-align-middle header">
+      <div>{{ article.title }}</div>
+      <span class="date"
+        >{{ article.author_id }}
+        {{ article.create_date | date }}
+      </span>
+    </div>
+    <div *ngIf="article.tags.length > 0" class="tags-wrapper">
+      <span
+        class="tag"
+        *ngFor="let tag of article.tags"
+        (click)="addTagToSearch(tag, $event)"
+        >{{ tag }}</span
+      >
+    </div>
+  </div>
+</div>
+
+<!-- <p-accordionTab>
   <ng-template pTemplate="header">
     <div class="header-article flex align-items-center">
       <span class="vertical-align-middle">{{ article.title }}</span>
@@ -31,3 +52,4 @@
     </p>
   </ng-template>
 </p-accordionTab>
+ -->

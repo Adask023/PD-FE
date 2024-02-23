@@ -36,6 +36,8 @@ import { PaginatorModule } from 'primeng/paginator';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { TabMenuModule } from 'primeng/tabmenu';
+import { SplitterModule } from 'primeng/splitter';
+import { ArticleItemFullComponent } from './core/components/article-item-full/article-item-full.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,7 @@ import { TabMenuModule } from 'primeng/tabmenu';
     TopNavComponent,
     ArticleAdminComponent,
     SafePipe,
+    ArticleItemFullComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,6 +75,7 @@ import { TabMenuModule } from 'primeng/tabmenu';
     PaginatorModule,
     ConfirmDialogModule,
     TabMenuModule,
+    SplitterModule,
   ],
   providers: [MessageService, AuthService, ArticleService, ConfirmationService],
   bootstrap: [AppComponent],

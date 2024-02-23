@@ -6,6 +6,7 @@
         (onRemove)="executeSearch()"
         [max]="3"
         [(ngModel)]="selectedTags"
+        placeholder="tags"
         [disabled]="loading"
       >
       </p-chips>
@@ -47,13 +48,45 @@
     </div>
   </div>
 
-  <div class="accordion-wrapper">
+  <p-splitter
+    [style]="{ minHeight: '300px' }"
+    [minSizes]="[30, 30]"
+    styleClass="mb-5"
+    class="splitter-panel"
+  >
+    <ng-template pTemplate>
+      <div class="article-list-wrapper">
+        <ng-container *ngFor="let article of articles">
+          <app-article-item
+            (click)="articleSelected(article)"
+            (newTagAddToSearchEvent)="addTagToSearch($event)"
+            [article]="article"
+          ></app-article-item>
+        </ng-container>
+      </div>
+    </ng-template>
+    <ng-template pTemplate>
+      <div class="article-content-wrapper">
+        <div
+          *ngIf="selectedArticle !== null; else pickArticleTemplate"
+          class="article-content"
+        >
+          <p-button
+            [routerLink]="['/article', selectedArticle._id]"
+            [state]="{ selectedArticle: selectedArticle }"
+            label="Full view"
+            size="small"
+            [text]="true"
+          ></p-button>
+          <h3>{{ selectedArticle.body.title }}</h3>
+          <p [innerHTML]="selectedArticle.body.body | safe"></p>
+        </div>
+      </div>
+    </ng-template>
+  </p-splitter>
+
+  <!-- <div class="accordion-wrapper">
     <p-accordion [multiple]="false" [activeIndex]="0">
-      <!-- <p-accordion
-      *ngIf="loading === false; else loadingSpinner"
-      [multiple]="false"
-      [activeIndex]="0"
-    > -->
       <ng-container *ngFor="let article of articles">
         <app-article-item
           (newTagAddToSearchEvent)="addTagToSearch($event)"
@@ -61,7 +94,7 @@
         ></app-article-item>
       </ng-container>
     </p-accordion>
-  </div>
+  </div> -->
   <p-paginator
     [rows]="rows"
     [totalRecords]="totalRecords"
@@ -72,3 +105,10 @@
 <!-- <ng-template #loadingSpinner
   ><p-progressSpinner></p-progressSpinner
 ></ng-template> -->
+
+<ng-template #pickArticleTemplate>
+  <div class="pick-article-template-wrapper">
+    <h2>Select an Article to view</h2>
+    <div>Nothing is selected</div>
+  </div>
+</ng-template>

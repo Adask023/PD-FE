@@ -15,13 +15,24 @@
           <label for="password">Password</label>
         </span>
 
-        <button
-          type="submit"
-          pButton
-          pRipple
-          label="Login"
-          class="p-button-success mt"
-        ></button>
+        <div class="button-wrapper">
+          <button
+            type="submit"
+            pButton
+            pRipple
+            label="Login"
+            class="p-button-success mt"
+          ></button>
+
+          <div class="back-button">
+            <p-button
+              label="Back"
+              routerLink="/admin"
+              [text]="true"
+              severity="danger"
+            ></p-button>
+          </div>
+        </div>
       </form>
     </div>
   </p-card>

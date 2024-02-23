@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ArticleService } from '../../services/article.service';
 import { Article, ArticleGetPayload } from '../../models/article.model';
 import { MessageService } from 'primeng/api';
@@ -15,25 +15,31 @@ export class HomePageComponent implements OnInit {
   ) {}
 
   articles: Article[];
+  selectedArticle: Article | null = null;
   loading: boolean = false;
   rows: number;
   totalRecords: number;
 
   searchQueryModel: string;
 
-  selectedFilter = { name: 'Newest', value: 'dateAsc' };
+  selectedFilter = { name: 'Newest', value: 'dateDesc' };
 
   selectedTags: string[] = [];
 
   filters = [
-    { name: 'Newest', value: 'dateAsc' },
-    { name: 'Oldest', value: 'dateDesc' },
+    { name: 'Newest', value: 'dateDesc' },
+    { name: 'Oldest', value: 'dateAsc' },
     { name: 'By Title A-Z', value: 'titleAZ' },
     { name: 'By Title Z-A', value: 'titleZA' },
   ];
 
   ngOnInit(): void {
     this.loadArticles();
+  }
+
+  articleSelected(article: Article) {
+    console.log(article);
+    this.selectedArticle = article;
   }
 
   addTagToSearch(e: string) {
@@ -57,11 +63,12 @@ export class HomePageComponent implements OnInit {
   resetSearch() {
     this.searchQueryModel = '';
     this.selectedTags = [];
-    this.selectedFilter = { name: 'Newest', value: 'dateAsc' };
+    this.selectedFilter = { name: 'Newest', value: 'dateDesc' };
     this.loadArticles();
   }
 
   loadArticles(page: number = 1) {
+    this.selectedArticle = null;
     this.loading = true;
     this.articleService
       .getArticles(

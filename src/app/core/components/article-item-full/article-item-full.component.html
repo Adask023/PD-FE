@@ -1,0 +1,26 @@
+<app-top-nav></app-top-nav>
+
+<div class="full-view-wrapper">
+  <div class="back-button">
+    <p-button
+      label="Back to home"
+      routerLink="/home"
+      [outlined]="true"
+    ></p-button>
+  </div>
+
+  <div class="article-header">
+    <h1>{{ article.title }}</h1>
+    <div>added by: {{ article.author_id }}</div>
+    <div>date: {{ article.create_date | date }}</div>
+
+    <div *ngIf="article.tags.length > 0" class="tags-wrapper">
+      tags:
+      <span class="tag" *ngFor="let tag of article?.tags"> {{ tag }} </span>
+    </div>
+  </div>
+  <div class="article-content">
+    <h2>{{ article.body.title }}</h2>
+    <div [innerHTML]="article.body.body | safe"></div>
+  </div>
+</div>

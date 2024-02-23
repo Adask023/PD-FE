@@ -14,7 +14,8 @@ export class ArticleItemComponent implements OnInit {
     console.log(this.article);
   }
 
-  addTagToSearch(tag: string) {
+  addTagToSearch(tag: string, e: Event) {
+    e.stopImmediatePropagation();
     console.log('click');
     this.newTagAddToSearchEvent.emit(tag);
   }

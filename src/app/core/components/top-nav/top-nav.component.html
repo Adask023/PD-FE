@@ -11,10 +11,39 @@
 </nav> -->
 <nav class="mask">
   <ul class="list">
+    <li>
+      <p-button
+        label="Home"
+        size="small"
+        routerLink="/home"
+        [text]="true"
+      ></p-button>
+    </li>
+    <li *ngIf="isCreator">
+      <p-button
+        label="Creator panel"
+        size="small"
+        routerLink="/admin"
+        [text]="true"
+      ></p-button>
+    </li>
+
+    <li>
+      <p-button
+        label="Logout"
+        [text]="true"
+        size="small"
+        severity="danger"
+        (click)="handleLogoutAction()"
+        routerLink="/"
+      ></p-button>
+    </li>
+  </ul>
+  <!-- <ul class="list">
     <li><a routerLink="/home">Home</a></li>
     <li><a routerLink="/admin">Creator panel</a></li>
     <li><a (click)="handleLogoutAction()" routerLink="/">Logout</a></li>
-  </ul>
+  </ul> -->
   <!-- <button class="menu">Menu</button> -->
 </nav>
 <!-- <nav class="mask-pattern">
