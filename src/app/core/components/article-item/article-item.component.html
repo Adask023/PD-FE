@@ -1,6 +1,5 @@
 <div class="article-item">
   <div class="header-article">
-
     <div class="vertical-align-middle header">
       <div>{{ article.title }}</div>
       <span class="date"
@@ -9,12 +8,9 @@
       </span>
     </div>
     <div *ngIf="article.tags.length > 0" class="tags-wrapper">
-      <span
-        class="tag"
-        *ngFor="let tag of article.tags"
-        (click)="addTagToSearch(tag, $event)"
-        >{{ tag }}</span
-      >
+      <div class="tag-wrapper" *ngFor="let tag of article.tags">
+        <span class="tag" (click)="addTagToSearch(tag, $event)">{{ tag }}</span>
+      </div>
     </div>
   </div>
 </div>

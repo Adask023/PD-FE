@@ -89,9 +89,5 @@ export class HomePageComponent implements OnInit {
 
   paginate(event: any) {
     this.loadArticles(event.page + 1);
-    //event.first = Index of the first record
-    //event.rows = Number of rows to display in new page
-    //event.page = Index of the new page
-    //event.pageCount = Total number of pages
   }
 }

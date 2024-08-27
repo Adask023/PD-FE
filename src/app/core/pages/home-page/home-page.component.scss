@@ -13,7 +13,7 @@
   flex-wrap: wrap;
 
   .search-input {
-    width: 350px;
+    // width: 350px;
   }
 
   .filters-wrapper {
@@ -77,7 +77,7 @@ p-accordion {
 
 :host ::ng-deep p-chips div,
 :host ::ng-deep p-chips ul {
-  width: 450px !important;
+  min-width: 250px !important;
 
   input {
     width: 80px;
